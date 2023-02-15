@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  feApiUrl: "http://vt-stlmsdev01:8196/",
 };
