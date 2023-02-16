@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  feApiUrl: "http://vt-stlmsdev01:8196/",
+  feApiUrl: "https://dummyjson.com/",
 };
 
 /*

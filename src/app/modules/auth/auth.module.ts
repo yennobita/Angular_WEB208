@@ -7,6 +7,7 @@ import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
 import { AuthComponent } from './auth.component';
 import { RegisterComponent } from './register/register.component';
+import { ErrorMessageComponent } from 'src/app/share/ErrorMessage/error-message.component';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { RegisterComponent } from './register/register.component';
     LogoutComponent,
     RegisterComponent,
     AuthComponent,
+    ErrorMessageComponent,
   ],
   imports: [
     CommonModule,
