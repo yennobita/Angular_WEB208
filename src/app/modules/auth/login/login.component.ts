@@ -41,14 +41,16 @@ export class LoginComponent implements OnInit {
       password: this.loginForm.value?.password || '',
     };
     this.isLoadingLogin$.next(true);
-    this.loginService
-      .login(data)
-      .pipe(finalize(() => this.isLoadingLogin$.next(false)))
-      .subscribe((res) => {
-        if (res) {
-          localStorage.setItem('token', JSON.stringify(res));
-          this.router.navigate(['/'])
-        }
-      });
+    localStorage.setItem('token', JSON.stringify('123131'));
+    this.router.navigate(['/']);
+    // this.loginService
+    //   .login(data)
+    //   .pipe(finalize(() => this.isLoadingLogin$.next(false)))
+    //   .subscribe((res) => {
+    //     if (res) {
+    //       localStorage.setItem('token', JSON.stringify(res));
+    //       this.router.navigate(['/']);
+    //     }
+    //   });
   }
 }
