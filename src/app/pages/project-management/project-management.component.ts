@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { PageEvent } from '@angular/material/paginator';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { BehaviorSubject } from 'rxjs';
 import { finalize } from 'rxjs/operators';
@@ -13,9 +15,32 @@ import { PopupComponentComponent } from './popup-component/popup-component.compo
 export class ProjectManagementComponent implements OnInit {
   isLoading$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   dataList$: BehaviorSubject<any> = new BehaviorSubject<any>([]);
-  constructor(private pageService: PageService, private ngModal: NgbModal) {}
+
+  totalGetList: number = 0;
+  lowValue: number = 0;
+  highValue: number = 10;
+  page = 1;
+  pageSize = 10;
+
+  constructor(
+    private pageService: PageService,
+    private ngModal: NgbModal,
+    private fb: FormBuilder
+  ) {}
 
   ngOnInit(): void {
+    this.getList();
+  }
+
+  onPageChange(event: PageEvent): PageEvent {
+    this.page = event.pageIndex + 1;
+    this.pageSize = event.pageSize;
+    this.lowValue = event.pageIndex * event.pageSize;
+    this.highValue = this.lowValue + event.pageSize;
+    return event;
+  }
+
+  getList() {
     this.pageService
       .getProject()
       .pipe(finalize(() => this.isLoading$.next(false)))
@@ -33,5 +58,11 @@ export class ProjectManagementComponent implements OnInit {
     });
 
     modalPending.componentInstance.title = 'Tạo mới danh sách tiền tố';
+
+    modalPending.result.then((res) => {
+      if (res) {
+        this.getList();
+      }
+    });
   }
 }

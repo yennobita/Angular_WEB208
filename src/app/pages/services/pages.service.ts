@@ -26,4 +26,16 @@ export class PageService {
       })
     );
   }
+
+  postProject(data: any) {
+    let url = `${environment.feApiUrl}/project-manager`;
+    return this.authHttpService.callFeApiPostMethod<any>(data, url).pipe(
+      map((res) => {
+        return res;
+      }),
+      catchError((body) => {
+        return of(body.error);
+      })
+    );
+  }
 }
