@@ -1,12 +1,12 @@
 export const menu = [
   {
-    path: '/auth/login',
-    name: 'dashboard',
+    path: '/dashboard',
+    name: 'Trang chủ',
     role: 'admin',
   },
   {
-    path: '/auth/login',
-    name: 'dashboard1',
+    path: '/manager-project',
+    name: 'Quản lý dự án',
     role: 'admin',
   },
   {

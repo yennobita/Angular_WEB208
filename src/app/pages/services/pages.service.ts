@@ -4,23 +4,22 @@ import { environment } from 'src/environments/environment';
 import { Observable, of } from 'rxjs';
 import { finalize, map, catchError } from 'rxjs/operators';
 import * as moment from 'moment';
-import { AuthHTTPService } from '../../services/auth-http.service';
+import { AuthHTTPService } from 'src/app/modules/services/auth-http.service';
 
 @Injectable({
   providedIn: 'root',
 })
-export class LoginService {
+export class PageService {
   constructor(
     private localStorage: LocalStorageService,
     private authHttpService: AuthHTTPService
   ) {}
 
-  login(data: any) {
-    let url = `${environment.feApiLoginUrl}/login`;
-    return this.authHttpService.callFeApiPostMethod<any>(data, url).pipe(
+  getProject() {
+    let url = `${environment.feApiUrl}/project-manager`;
+    return this.authHttpService.callFeApiGetMethod<any>(url).pipe(
       map((res) => {
-        if (!res?.token) return res;
-        return res.token;
+        return res;
       }),
       catchError((body) => {
         return of(body.error);
