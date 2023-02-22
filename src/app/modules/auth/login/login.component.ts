@@ -37,20 +37,19 @@ export class LoginComponent implements OnInit {
       return;
     }
     const data = {
-      username: this.loginForm.value?.email || '',
+      email: this.loginForm.value?.email || '',
       password: this.loginForm.value?.password || '',
     };
     this.isLoadingLogin$.next(true);
-    localStorage.setItem('token', JSON.stringify('123131'));
-    this.router.navigate(['/']);
-    // this.loginService
-    //   .login(data)
-    //   .pipe(finalize(() => this.isLoadingLogin$.next(false)))
-    //   .subscribe((res) => {
-    //     if (res) {
-    //       localStorage.setItem('token', JSON.stringify(res));
-    //       this.router.navigate(['/']);
-    //     }
-    //   });
+    this.loginService
+      .login(data)
+      .pipe(finalize(() => this.isLoadingLogin$.next(false)))
+      .subscribe((res) => {
+        if (res) {
+          localStorage.setItem('token', JSON.stringify(res?.body?.accessToken));
+          localStorage.setItem('user', JSON.stringify(res?.body));
+          this.router.navigate(['/']);
+        }
+      });
   }
 }

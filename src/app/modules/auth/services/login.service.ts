@@ -16,7 +16,7 @@ export class LoginService {
   ) {}
 
   login(data: any) {
-    let url = `${environment.feApiUrl}auth/login`;
+    let url = `${environment.feApiUrl}/login`;
     return this.authHttpService.callFeApiPostMethod<any>(data, url).pipe(
       map((res) => {
         if (!res?.token) return res;
