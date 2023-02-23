@@ -62,4 +62,16 @@ export class PageService {
       })
     );
   }
+
+  getUser() {
+    let url = `${environment.feApiUrl}/users`;
+    return this.authHttpService.callFeApiGetMethod<any>(url).pipe(
+      map((res) => {
+        return res;
+      }),
+      catchError((body) => {
+        return of(body.error);
+      })
+    );
+  }
 }

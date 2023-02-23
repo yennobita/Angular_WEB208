@@ -12,6 +12,7 @@ import { MaterialExampleModule } from '../material.module';
 import { MatNativeDateModule } from '@angular/material/core';
 import { PopupConfirmComponent } from '../share/popup-confirm/popup-confirm.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { UserManagerComponent } from './user-manager/user-manager.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     ProjectManagementComponent,
     PopupComponentComponent,
     PopupConfirmComponent,
+    UserManagerComponent,
   ],
   imports: [
     CommonModule,
