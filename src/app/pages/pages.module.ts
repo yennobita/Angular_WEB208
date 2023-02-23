@@ -13,6 +13,10 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { PopupConfirmComponent } from '../share/popup-confirm/popup-confirm.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { UserManagerComponent } from './user-manager/user-manager.component';
+import { TaskManagerComponent } from './task-manager/task-manager.component';
+import { PopupTaskComponent } from './task-manager/popup-task/popup-task.component';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +26,9 @@ import { UserManagerComponent } from './user-manager/user-manager.component';
     PopupComponentComponent,
     PopupConfirmComponent,
     UserManagerComponent,
+    TaskManagerComponent,
+    PopupTaskComponent,
+    DashboardComponent
   ],
   imports: [
     CommonModule,
@@ -33,6 +40,7 @@ import { UserManagerComponent } from './user-manager/user-manager.component';
     MaterialExampleModule,
     MatNativeDateModule,
     MatPaginatorModule,
+    NgSelectModule
   ],
 })
 export class PagesModule {}

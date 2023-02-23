@@ -1,1 +1,49 @@
-<p>dashboard works!</p>
+<div class="content">
+  <h1>Trang chủ</h1>
+  <div class="row">
+    <div class="col-lg-3 col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Dự án</h5>
+          <p class="card-text" *ngIf="totalProject$; else loading">
+            {{ totalProject$ }}
+          </p>
+          <ng-template #loading>Đang tải</ng-template>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Nhân viên</h5>
+          <p class="card-text" *ngIf="totalUser$; else loading1">
+            {{ totalUser$ }}
+          </p>
+          <ng-template #loading1>Đang tải</ng-template>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Task</h5>
+          <p class="card-text" *ngIf="totalTask$; else loading2">
+            {{ totalTask$ }}
+          </p>
+          <ng-template #loading2>Đang tải</ng-template>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Doanh thu</h5>
+          <p class="card-text" *ngIf="total$; else loading3">
+            {{ total$ }}
+          </p>
+          <ng-template #loading3>Đang tải</ng-template>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

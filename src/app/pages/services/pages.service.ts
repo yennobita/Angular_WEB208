@@ -74,4 +74,52 @@ export class PageService {
       })
     );
   }
+
+  getTask() {
+    let url = `https://63f77729e40e087c958f7c18.mockapi.io/api/v1/task`;
+    return this.authHttpService.callFeApiGetMethod<any>(url).pipe(
+      map((res) => {
+        return res;
+      }),
+      catchError((body) => {
+        return of(body.error);
+      })
+    );
+  }
+
+  postTask(data: any) {
+    let url = `https://63f77729e40e087c958f7c18.mockapi.io/api/v1/task`;
+    return this.authHttpService.callFeApiPostMethod<any>(data, url).pipe(
+      map((res) => {
+        return res;
+      }),
+      catchError((body) => {
+        return of(body.error);
+      })
+    );
+  }
+
+  putTask(data: any, id: string | number) {
+    let url = `https://63f77729e40e087c958f7c18.mockapi.io/api/v1/task/${id}`;
+    return this.authHttpService.callFeApiPutMethod<any>(data, url).pipe(
+      map((res) => {
+        return res;
+      }),
+      catchError((body) => {
+        return of(body.error);
+      })
+    );
+  }
+
+  deleteTask(id: string | number) {
+    let url = `https://63f77729e40e087c958f7c18.mockapi.io/api/v1/task/${id}`;
+    return this.authHttpService.callFeApiDeleteMethod<any>(url).pipe(
+      map((res) => {
+        return res;
+      }),
+      catchError((body) => {
+        return of(body.error);
+      })
+    );
+  }
 }

@@ -1,0 +1,145 @@
+<div>
+  <div class="modal-header">
+    <h5 class="modal-title">Quản lý dự án</h5>
+    <button
+      type="button"
+      class="btn-close"
+      (click)="activeModal.close(false)"
+    ></button>
+  </div>
+  <div class="modal-body">
+    <form class="row g-3" [formGroup]="formTaskManager">
+      <div class="col-md-12">
+        <div>
+          <label for="inputEmail4" class="form-label">Tên task</label>
+          <input
+            type="email"
+            class="form-control"
+            id="inputEmail4"
+            formControlName="nameTask"
+          />
+        </div>
+        <ng-container
+          *ngIf="frm['nameTask'].invalid && frm['nameTask'].touched"
+        >
+          <small class="sb-color-red">Trường bắt buộc nhập</small>
+        </ng-container>
+      </div>
+      <div class="col-md-12">
+        <div>
+          <label for="inputEmail4" class="form-label">Tên dự án</label>
+          <ng-select
+            [loading]="isLoadingdataProject$ | async"
+            style="height: 40px"
+            [items]="dataProject$ | async"
+            placeholder="Vui lòng chọn"
+            [clearable]="true"
+            formControlName="nameProject"
+            (change)="handleChangeProject($event)"
+            class="sb-select-combo-info border-0 w-100"
+          >
+          </ng-select>
+        </div>
+        <ng-container
+          *ngIf="frm['nameProject'].invalid && frm['nameProject'].touched"
+        >
+          <small class="sb-color-red">Trường bắt buộc nhập</small>
+        </ng-container>
+      </div>
+
+      <div class="col-md-6">
+        <div>
+          <label for="inputPassword4" class="form-label">Ngày bắt đầu</label>
+          <br />
+          <mat-form-field class="example-full-width" appearance="fill">
+            <input
+              matInput
+              [matDatepicker]="picker1"
+              formControlName="startDate"
+            />
+            <mat-datepicker-toggle matSuffix [for]="picker1">
+              <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+            </mat-datepicker-toggle>
+            <mat-datepicker #picker1></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <ng-container
+          *ngIf="frm['startDate'].invalid && frm['startDate'].touched"
+        >
+          <small class="sb-color-red">Trường bắt buộc nhập</small>
+        </ng-container>
+      </div>
+      <div class="col-md-6">
+        <div>
+          <label for="inputPassword4" class="form-label">Ngày kết thúc</label>
+          <br />
+          <mat-form-field class="example-full-width" appearance="fill">
+            <input
+              matInput
+              [matDatepicker]="picker"
+              formControlName="endDate"
+            />
+            <mat-datepicker-toggle matSuffix [for]="picker">
+              <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+            </mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <ng-container *ngIf="frm['endDate'].invalid && frm['endDate'].touched">
+          <small class="sb-color-red">Trường bắt buộc nhập</small>
+        </ng-container>
+      </div>
+      <div class="col-md-6">
+        <div>
+          <label for="inputEmail4" class="form-label">Người giao task</label>
+          <ng-select
+            [loading]="isLoadingdataUser$ | async"
+            style="height: 40px"
+            [items]="dataUser$ | async"
+            placeholder="Vui lòng chọn"
+            [clearable]="true"
+            formControlName="toName"
+            class="sb-select-combo-info border-0 w-100"
+          >
+          </ng-select>
+        </div>
+        <ng-container *ngIf="frm['toName'].invalid && frm['toName'].touched">
+          <small class="sb-color-red">Trường bắt buộc nhập</small>
+        </ng-container>
+      </div>
+      <div class="col-md-6">
+        <div>
+          <label for="inputEmail4" class="form-label">Người nhận task</label>
+          <ng-select
+            [loading]="isLoadingdataUser$ | async"
+            style="height: 40px"
+            [items]="dataUser$ | async"
+            placeholder="Vui lòng chọn"
+            [clearable]="true"
+            formControlName="fromName"
+            class="sb-select-combo-info border-0 w-100"
+          >
+          </ng-select>
+        </div>
+        <ng-container
+          *ngIf="frm['fromName'].invalid && frm['fromName'].touched"
+        >
+          <small class="sb-color-red">Trường bắt buộc nhập</small>
+        </ng-container>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-secondary"
+      data-bs-dismiss="modal"
+      (click)="activeModal.close(false)"
+    >
+      Close
+    </button>
+    <button type="button" class="btn btn-primary" (click)="handleSubmit()">
+      Save changes
+    </button>
+  </div>
+</div>
