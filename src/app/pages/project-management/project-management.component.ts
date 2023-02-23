@@ -4,6 +4,7 @@ import { PageEvent } from '@angular/material/paginator';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { BehaviorSubject } from 'rxjs';
 import { finalize } from 'rxjs/operators';
+import { PopupConfirmComponent } from 'src/app/share/popup-confirm/popup-confirm.component';
 import { PageService } from '../services/pages.service';
 import { PopupComponentComponent } from './popup-component/popup-component.component';
 
@@ -14,13 +15,13 @@ import { PopupComponentComponent } from './popup-component/popup-component.compo
 })
 export class ProjectManagementComponent implements OnInit {
   isLoading$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-  dataList$: BehaviorSubject<any> = new BehaviorSubject<any>([]);
+  dataList$: BehaviorSubject<any> = new BehaviorSubject([]);
 
   totalGetList: number = 0;
   lowValue: number = 0;
   highValue: number = 10;
   page = 1;
-  pageSize = 10;
+  pageSize = 5;
 
   constructor(
     private pageService: PageService,
@@ -45,8 +46,8 @@ export class ProjectManagementComponent implements OnInit {
       .getProject()
       .pipe(finalize(() => this.isLoading$.next(false)))
       .subscribe((res) => {
-        console.log('res', res);
         this.dataList$.next(res);
+        this.totalGetList = res.length;
       });
   }
 
@@ -57,7 +58,7 @@ export class ProjectManagementComponent implements OnInit {
       size: 'lg',
     });
 
-    modalPending.componentInstance.title = 'Tạo mới danh sách tiền tố';
+    modalPending.componentInstance.content = content;
 
     modalPending.result.then((res) => {
       if (res) {
@@ -65,4 +66,32 @@ export class ProjectManagementComponent implements OnInit {
       }
     });
   }
+
+  deleteData(data: any) {
+    const modalPending = this.ngModal.open(PopupConfirmComponent, {
+      backdrop: 'static',
+      keyboard: false,
+      size: 'lg',
+    });
+
+    modalPending.result.then((res) => {
+      if (res) {
+        this.pageService
+          .deleteProject(data.id)
+          .pipe(finalize(() => this.isLoading$.next(false)))
+          .subscribe((res) => {
+            alert('Xóa thành công');
+            this.getList();
+          });
+      }
+    });
+  }
+}
+
+export class DataItem {
+  id: any;
+  nameProject: any;
+  startDate: any;
+  teamSize: any;
+  pice: any;
 }

@@ -20,23 +20,20 @@
         </tr>
       </thead>
       <tbody>
-        <ng-container
-          *ngIf="
-            (dataList$ | async) && (dataList$ | async).length > 0;
+        <ng-container *ngIf=" (dataList$|async).length > 0;
             else noData
-          "
-        >
-          <tr *ngFor="let item of dataList$ | async">
+          ">
+          <tr *ngFor="let item of (dataList$ | async).slice((page - 1) * pageSize, page * pageSize)">
             <th scope="row">{{ item.id }}</th>
             <td>{{ item.nameProject }}</td>
             <td>{{ item.startDate }}</td>
             <td>{{ item.teamSize }}</td>
             <td>{{ item.pice }}</td>
             <td>
-              <button type="button" class="btn btn-primary me-2">
-                Primary
+              <button type="button" class="btn btn-primary me-2" (click)="createData(item)">
+                Chỉnh sửa
               </button>
-              <button type="button" class="btn btn-danger">Danger</button>
+              <button type="button" class="btn btn-danger" (click)="deleteData(item)">Xóa</button>
             </td>
           </tr>
         </ng-container>
@@ -46,9 +43,7 @@
               <td colspan="16" class="fz-12 text-center">
                 <div>
                   <span>Đang tải </span>
-                  <span
-                    class="spinner spinner-sm spinner-primary spinner-left"
-                  ></span>
+                  <span class="spinner spinner-sm spinner-primary spinner-left"></span>
                 </div>
               </td>
             </tr>
@@ -63,5 +58,10 @@
         </ng-template>
       </tbody>
     </table>
+  </div>
+  <div *ngIf="(dataList$ | async) && (dataList$ | async).length > 0" class="mt-3">
+    <mat-paginator (page)="onPageChange($event)" [length]="totalGetList" [pageSize]="pageSize"
+      [pageSizeOptions]="[5, 10, 15]">
+    </mat-paginator>
   </div>
 </div>

@@ -38,4 +38,28 @@ export class PageService {
       })
     );
   }
+
+  putProject(data: any, id: string | number) {
+    let url = `${environment.feApiUrl}/project-manager/${id}`;
+    return this.authHttpService.callFeApiPutMethod<any>(data, url).pipe(
+      map((res) => {
+        return res;
+      }),
+      catchError((body) => {
+        return of(body.error);
+      })
+    );
+  }
+
+  deleteProject(id: string | number) {
+    let url = `${environment.feApiUrl}/project-manager/${id}`;
+    return this.authHttpService.callFeApiDeleteMethod<any>(url).pipe(
+      map((res) => {
+        return res;
+      }),
+      catchError((body) => {
+        return of(body.error);
+      })
+    );
+  }
 }

@@ -1,0 +1,17 @@
+<div>
+  <div class="modal-header">
+    <h5 class="modal-title">Xác nhận </h5>
+    <button type="button" class="btn-close" (click)="activeModal.close(false)"></button>
+  </div>
+  <div class="modal-body">
+    <p>
+      Bạn có chắc chắn muốn xóa không ?
+    </p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="activeModal.close(false)">
+      Hủy
+    </button>
+    <button type="button" class="btn btn-primary" (click)="activeModal.close(true)">Gửi</button>
+  </div>
+</div>

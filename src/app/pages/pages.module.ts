@@ -10,6 +10,8 @@ import { PopupComponentComponent } from './project-management/popup-component/po
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MaterialExampleModule } from '../material.module';
 import { MatNativeDateModule } from '@angular/material/core';
+import { PopupConfirmComponent } from '../share/popup-confirm/popup-confirm.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -17,6 +19,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     HeaderComponent,
     ProjectManagementComponent,
     PopupComponentComponent,
+    PopupConfirmComponent,
   ],
   imports: [
     CommonModule,
@@ -27,6 +30,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatDatepickerModule,
     MaterialExampleModule,
     MatNativeDateModule,
+    MatPaginatorModule,
   ],
 })
 export class PagesModule {}
