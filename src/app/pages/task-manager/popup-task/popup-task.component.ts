@@ -18,6 +18,13 @@ export class PopupTaskComponent implements OnInit {
   isLoadingdataUser$: BehaviorSubject<any> = new BehaviorSubject(false);
   dataProject$: BehaviorSubject<any> = new BehaviorSubject([]);
   dataUser$: BehaviorSubject<any> = new BehaviorSubject([]);
+  dataStatus$: BehaviorSubject<any> = new BehaviorSubject([
+    { value: 'TO DO', label: 'TO DO' },
+    { value: 'IN PROGRESS', label: 'IN PROGRESS' },
+    { value: 'READY FOR TESTING', label: 'READY FOR TESTING' },
+    { value: 'TESTED WITH FEEDBACKS', label: 'TESTED WITH FEEDBACKS' },
+    { value: 'DONE', label: 'DONE' },
+  ]);
   @Input() content: any;
 
   get frm() {
@@ -36,6 +43,7 @@ export class PopupTaskComponent implements OnInit {
       toName: [null, Validators.required],
       fromName: [null, Validators.required],
       nameTask: [null, Validators.required],
+      status: [null, Validators.required],
     });
   }
 
@@ -55,6 +63,7 @@ export class PopupTaskComponent implements OnInit {
       nameTask: this.content.nameTask,
       toName: this.content.toName,
       fromName: this.content.fromName,
+      status: this.content.status,
     });
   }
 
@@ -104,6 +113,9 @@ export class PopupTaskComponent implements OnInit {
       nameProject:
         this.formTaskManager.value.nameProject.value ||
         this.formTaskManager.value.nameProject,
+      status:
+        this.formTaskManager.value.status.value ||
+        this.formTaskManager.value.status,
       endDate: moment(this.formTaskManager.value.endDate).format('MM/DD/YYYY'),
       toName:
         this.formTaskManager.value.toName.value ||

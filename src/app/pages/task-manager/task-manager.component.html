@@ -11,9 +11,10 @@
       <table class="table table-striped table-hover">
         <thead>
           <tr>
-            <th style="width: 5%" scope="col">ID</th>
-            <th style="width: 15%" scope="col">Tên task</th>
-            <th style="width: 11%" scope="col">Tên dự án</th>
+            <th style="width: 3%" scope="col">ID</th>
+            <th style="width: 10%" scope="col">Tên task</th>
+            <th style="width: 10%" scope="col">Tên dự án</th>
+            <th style="width: 8%" scope="col">Trạng thái</th>
             <th style="width: 12%" scope="col">Ngày bắt đầu</th>
             <th style="width: 12%" scope="col">Ngày kết thúc</th>
             <th style="width: 15%" scope="col">Người giao task</th>
@@ -29,6 +30,7 @@
               <th scope="row">{{ item.id }}</th>
               <td>{{ item.nameTask }}</td>
               <td>{{ item.nameProject }}</td>
+              <td>{{ item.status }}</td>
               <td>{{ item.startDate }}</td>
               <td>{{ item.endDate }}</td>
               <td>{{ item.toName }}</td>

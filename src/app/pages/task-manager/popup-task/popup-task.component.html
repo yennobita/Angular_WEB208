@@ -47,6 +47,26 @@
         </ng-container>
       </div>
 
+      <div class="col-md-12">
+        <div>
+          <label for="inputEmail4" class="form-label">Trạng thái</label>
+          <ng-select
+            style="height: 40px"
+            [items]="dataStatus$ | async"
+            placeholder="Vui lòng chọn"
+            [clearable]="true"
+            formControlName="status"
+            class="sb-select-combo-info border-0 w-100"
+          >
+          </ng-select>
+        </div>
+        <ng-container
+          *ngIf="frm['status'].invalid && frm['status'].touched"
+        >
+          <small class="sb-color-red">Trường bắt buộc nhập</small>
+        </ng-container>
+      </div>
+
       <div class="col-md-6">
         <div>
           <label for="inputPassword4" class="form-label">Ngày bắt đầu</label>
