@@ -7,6 +7,7 @@ import { finalize } from 'rxjs/operators';
 import { PopupConfirmComponent } from 'src/app/share/popup-confirm/popup-confirm.component';
 import { PageService } from '../services/pages.service';
 import { PopupTaskComponent } from './popup-task/popup-task.component';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-task-manager',
@@ -26,7 +27,8 @@ export class TaskManagerComponent implements OnInit {
   constructor(
     private pageService: PageService,
     private ngModal: NgbModal,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -80,7 +82,8 @@ export class TaskManagerComponent implements OnInit {
           .deleteTask(data.id)
           .pipe(finalize(() => this.isLoading$.next(false)))
           .subscribe((res) => {
-            alert('Xóa thành công');
+            this.toastr.success('Delete Succsessful!');
+
             this.getList();
           });
       }

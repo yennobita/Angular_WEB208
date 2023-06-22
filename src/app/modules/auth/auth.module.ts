@@ -8,6 +8,9 @@ import { LogoutComponent } from './logout/logout.component';
 import { AuthComponent } from './auth.component';
 import { RegisterComponent } from './register/register.component';
 import { ErrorMessageComponent } from 'src/app/share/ErrorMessage/error-message.component';
+import { Router } from '@angular/router';
+import { HeaderComponent } from 'src/app/layout/header/header.component';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [

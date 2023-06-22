@@ -1,33 +1,72 @@
 <nav class="navbar navbar-light bg-light fixed-top background-color-nav">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">Angular</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
-      aria-controls="offcanvasNavbar">
+    <nav class="main-navigation" style="width: 1140px">
+      <div class="navbar-header animated fadeInUp" style="margin-left: 20px">
+        <a class="navbar-brand" href="#">Logo Area</a>
+      </div>
+      <ul class="nav-list" routerLinkActive="active">
+        <li class="nav-list-item" *ngIf="showAdminBoard || showModeratorBoard">
+          <a href="dashboard" class="nav-link">Home</a>
+        </li>
+        <li class="nav-list-item" *ngIf="showAdminBoard || showModeratorBoard">
+          <a href="manager-task" class="nav-link">ManagerTask</a>
+        </li>
+        <li class="nav-list-item" *ngIf="showAdminBoard">
+          <a
+            href="manager-project"
+            routerLink="manager-project"
+            class="nav-link"
+            >ManagerProject</a
+          >
+        </li>
+        <li class="nav-list-item" *ngIf="showAdminBoard">
+          <a href="manager-user" class="nav-link">ManagerUser</a>
+        </li>
+      </ul>
+    </nav>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="offcanvas"
+      data-bs-target="#offcanvasNavbar"
+      aria-controls="offcanvasNavbar"
+    >
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="offcanvas offcanvas-start background-color-nav" tabindex="-1" id="offcanvasNavbar"
-      aria-labelledby="offcanvasNavbarLabel">
+    <div
+      class="offcanvas offcanvas-start background-color-nav"
+      tabindex="-1"
+      id="offcanvasNavbar"
+      aria-labelledby="offcanvasNavbarLabel"
+    >
       <div class="offcanvas-header">
         <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Angular</h5>
-        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        <button
+          type="button"
+          class="btn-close text-reset"
+          data-bs-dismiss="offcanvas"
+          aria-label="Close"
+        ></button>
       </div>
-      <p style="padding: 0px 10px; margin-bottom: 5px">
-        Họ tên: {{user.lastName}} {{user.firstName}}
-      </p>
-      <p style="padding: 0px 10px; margin-bottom: 5px">Role: {{user.role}}</p>
-      <p style="margin: 0px 10px; border: 1px solid gray"></p>
-      <div class="offcanvas-body">
-        <ul class="navbar-nav justify-content-end flex-grow-1">
-          <ng-container *ngFor="let item of menu">
-            <li class="nav-item custom-menu" *ngIf="item.role === role">
-              <a class="nav-link" aria-current="page" [routerLink]="item.path">{{item.name}}</a>
-            </li>
-          </ng-container>
-          <li class="nav-item custom-menu">
-            <a class="nav-link" aria-current="page" style="cursor: pointer" (click)="handleClickLogout()">Đăng xuất</a>
-          </li>
-        </ul>
-      </div>
+      <ul class="navbar-nav ml-auto" *ngIf="!isLoggedIn">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="auth/register">Sign Up</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="auth/login">Login</a>
+        </li>
+      </ul>
+
+      <ul class="navbar-nav ml-auto" *ngIf="isLoggedIn">
+        <li class="nav-item">
+          <a href="/profile" class="nav-link" routerLink="profile">{{
+            username
+          }}</a>
+        </li>
+        <li class="nav-item">
+          <a href class="nav-link" (click)="logout()">LogOut</a>
+        </li>
+      </ul>
     </div>
   </div>
 </nav>

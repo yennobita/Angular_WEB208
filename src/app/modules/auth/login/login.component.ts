@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { LoginService } from '../services/login.service';
-import { finalize } from 'rxjs/operators';
-import { BehaviorSubject, Observable, of } from 'rxjs';
-import { LocalStorageService } from 'ngx-webstorage';
-import { Router } from '@angular/router';
+import { Route, Router } from '@angular/router';
+import { TokenStorageService } from '../services/token-storage.service';
+import { AuthService } from '../services/auth.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -12,44 +10,45 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  loginForm: FormGroup = new FormGroup({});
-  isLoadingLogin$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(
-    false
-  );
-
+  form: any = {
+    username: null,
+    password: null,
+  };
+  isLoggedIn = false;
+  isLoginFailed = false;
+  errorMessage = '';
+  roles: string[] = [];
   constructor(
-    private fb: FormBuilder,
-    public loginService: LoginService,
-    private localStorage: LocalStorageService,
-    private router: Router
-  ) {
-    this.loginForm = this.fb.group({
-      email: [null, Validators.required],
-      password: [null, Validators.required],
-    });
+    private authService: AuthService,
+    private tokenStorage: TokenStorageService,
+    private router: Router,
+    private toastr: ToastrService
+  ) {}
+
+  ngOnInit(): void {
+    if (this.tokenStorage.getToken()) {
+      this.isLoggedIn = true;
+      this.roles = this.tokenStorage.getUser().roles;
+    }
   }
 
-  ngOnInit(): void {}
+  onSubmit(): void {
+    const { username, password } = this.form;
+    this.authService.login(username, password).subscribe({
+      next: (data) => {
+        this.tokenStorage.saveToken(data.accesToken);
+        this.tokenStorage.saveUser(data);
+        this.isLoggedIn = true;
+        this.roles = this.tokenStorage.getUser().roles;
+        this.toastr.success('Login Succsessful!');
 
-  onSubmit() {
-    if (!this.loginForm.valid) {
-      this.loginForm.markAllAsTouched();
-      return;
-    }
-    const data = {
-      email: this.loginForm.value?.email || '',
-      password: this.loginForm.value?.password || '',
-    };
-    this.isLoadingLogin$.next(true);
-    this.loginService
-      .login(data)
-      .pipe(finalize(() => this.isLoadingLogin$.next(false)))
-      .subscribe((res) => {
-        if (res) {
-          localStorage.setItem('token', JSON.stringify(res?.body?.accessToken));
-          localStorage.setItem('user', JSON.stringify(res?.body));
-          this.router.navigate(['/']);
-        }
-      });
+        this.router.navigate(['']);
+      },
+      error: (err) => {
+        this.errorMessage = err.error.message;
+        this.isLoginFailed = true;
+        this.toastr.error('Error Login!');
+      },
+    });
   }
 }

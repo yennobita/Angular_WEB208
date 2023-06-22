@@ -5,6 +5,7 @@ import * as moment from 'moment';
 import { PageService } from '../../services/pages.service';
 import { BehaviorSubject } from 'rxjs';
 import { finalize } from 'rxjs/operators';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-popup-task',
@@ -34,7 +35,8 @@ export class PopupTaskComponent implements OnInit {
   constructor(
     public activeModal: NgbActiveModal,
     private fb: FormBuilder,
-    private pageService: PageService
+    private pageService: PageService,
+    private toastr: ToastrService
   ) {
     this.formTaskManager = this.fb.group({
       nameProject: [null, Validators.required],
@@ -131,7 +133,8 @@ export class PopupTaskComponent implements OnInit {
         .postTask(body)
         .pipe(finalize(() => this.isLoadingSubmit$.next(false)))
         .subscribe((res) => {
-          alert('Thêm thành công');
+          this.toastr.success('Add new Succsessful!');
+
           this.activeModal.close(true);
         });
     } else {
@@ -139,7 +142,8 @@ export class PopupTaskComponent implements OnInit {
         .putTask(body, this.content.id)
         .pipe(finalize(() => this.isLoadingSubmit$.next(false)))
         .subscribe((res) => {
-          alert('Sửa thành công');
+          this.toastr.success('Edit Succsessful!');
+
           this.activeModal.close(true);
         });
     }

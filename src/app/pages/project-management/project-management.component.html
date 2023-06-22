@@ -1,10 +1,10 @@
 <div class="container-componet">
   <div>
-    <h3>Quản lý dự án</h3>
+    <h3>Manager Project</h3>
   </div>
   <div class="d-flex flex-row-reverse bd-highlight mb-3">
     <button type="button" class="btn btn-success" (click)="createData()">
-      Thêm mới
+      Add New
     </button>
   </div>
   <div class="scroll-table">
@@ -12,28 +12,43 @@
       <thead>
         <tr>
           <th style="width: 5%" scope="col">ID</th>
-          <th style="width: 20%" scope="col">Tên dự án</th>
-          <th style="width: 20%" scope="col">Ngày bắt đầu</th>
-          <th style="width: 15%" scope="col">Số người tham gia</th>
-          <th style="width: 15%" scope="col">Doanh thu</th>
-          <th style="width: 25%" scope="col">Hành động</th>
+          <th style="width: 20%" scope="col">Name Project</th>
+          <th style="width: 20%" scope="col">Start Day</th>
+          <th style="width: 15%" scope="col">Number Of Participants</th>
+          <th style="width: 15%" scope="col">Revenue</th>
+          <th style="width: 25%" scope="col">Operation</th>
         </tr>
       </thead>
       <tbody>
-        <ng-container *ngIf=" (dataList$|async).length > 0;
-            else noData
-          ">
-          <tr *ngFor="let item of (dataList$ | async).slice((page - 1) * pageSize, page * pageSize)">
+        <ng-container *ngIf="(dataList$ | async).length > 0; else noData">
+          <tr
+            *ngFor="
+              let item of (dataList$ | async).slice(
+                (page - 1) * pageSize,
+                page * pageSize
+              )
+            "
+          >
             <th scope="row">{{ item.id }}</th>
             <td>{{ item.nameProject }}</td>
             <td>{{ item.startDate }}</td>
             <td>{{ item.teamSize }}</td>
             <td>{{ item.pice }}</td>
             <td>
-              <button type="button" class="btn btn-primary me-2" (click)="createData(item)">
-                Chỉnh sửa
+              <button
+                type="button"
+                class="btn btn-primary me-2"
+                (click)="createData(item)"
+              >
+                Edit
               </button>
-              <button type="button" class="btn btn-danger" (click)="deleteData(item)">Xóa</button>
+              <button
+                type="button"
+                class="btn btn-danger"
+                (click)="deleteData(item)"
+              >
+                Delete
+              </button>
             </td>
           </tr>
         </ng-container>
@@ -42,8 +57,15 @@
             <tr>
               <td colspan="16" class="fz-12 text-center">
                 <div>
-                  <span>Đang tải </span>
-                  <span class="spinner spinner-sm spinner-primary spinner-left"></span>
+                  <div class="newtons-cradle" style="margin: 0 auto">
+                    <div class="newtons-cradle__dot"></div>
+                    <div class="newtons-cradle__dot"></div>
+                    <div class="newtons-cradle__dot"></div>
+                    <div class="newtons-cradle__dot"></div>
+                  </div>
+                  <span
+                    class="spinner spinner-sm spinner-primary spinner-left"
+                  ></span>
                 </div>
               </td>
             </tr>
@@ -59,9 +81,16 @@
       </tbody>
     </table>
   </div>
-  <div *ngIf="(dataList$ | async) && (dataList$ | async).length > 0" class="mt-3">
-    <mat-paginator (page)="onPageChange($event)" [length]="totalGetList" [pageSize]="pageSize"
-      [pageSizeOptions]="[5, 10, 15]">
+  <div
+    *ngIf="(dataList$ | async) && (dataList$ | async).length > 0"
+    class="mt-3"
+  >
+    <mat-paginator
+      (page)="onPageChange($event)"
+      [length]="totalGetList"
+      [pageSize]="pageSize"
+      [pageSizeOptions]="[5, 10, 15]"
+    >
     </mat-paginator>
   </div>
 </div>

@@ -28,7 +28,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     UserManagerComponent,
     TaskManagerComponent,
     PopupTaskComponent,
-    DashboardComponent
+    DashboardComponent,
   ],
   imports: [
     CommonModule,
@@ -40,7 +40,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     MaterialExampleModule,
     MatNativeDateModule,
     MatPaginatorModule,
-    NgSelectModule
+    NgSelectModule,
   ],
 })
 export class PagesModule {}

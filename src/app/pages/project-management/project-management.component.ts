@@ -7,6 +7,7 @@ import { finalize } from 'rxjs/operators';
 import { PopupConfirmComponent } from 'src/app/share/popup-confirm/popup-confirm.component';
 import { PageService } from '../services/pages.service';
 import { PopupComponentComponent } from './popup-component/popup-component.component';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-project-management',
@@ -26,7 +27,8 @@ export class ProjectManagementComponent implements OnInit {
   constructor(
     private pageService: PageService,
     private ngModal: NgbModal,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -80,7 +82,8 @@ export class ProjectManagementComponent implements OnInit {
           .deleteProject(data.id)
           .pipe(finalize(() => this.isLoading$.next(false)))
           .subscribe((res) => {
-            alert('Xóa thành công');
+            this.toastr.success('Delete  Succsessful!');
+
             this.getList();
           });
       }

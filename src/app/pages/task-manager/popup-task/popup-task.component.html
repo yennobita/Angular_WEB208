@@ -1,6 +1,6 @@
 <div>
   <div class="modal-header">
-    <h5 class="modal-title">Quản lý dự án</h5>
+    <h5 class="modal-title">Manager Task</h5>
     <button
       type="button"
       class="btn-close"
@@ -11,7 +11,7 @@
     <form class="row g-3" [formGroup]="formTaskManager">
       <div class="col-md-12">
         <div>
-          <label for="inputEmail4" class="form-label">Tên task</label>
+          <label for="inputEmail4" class="form-label">Name Task</label>
           <input
             type="email"
             class="form-control"
@@ -22,17 +22,18 @@
         <ng-container
           *ngIf="frm['nameTask'].invalid && frm['nameTask'].touched"
         >
-          <small class="sb-color-red">Trường bắt buộc nhập</small>
+          <small class="sb-color-red"> Required...</small>
         </ng-container>
       </div>
       <div class="col-md-12">
         <div>
-          <label for="inputEmail4" class="form-label">Tên dự án</label>
+          <label for="inputEmail4" class="form-label">Name Project</label>
           <ng-select
             [loading]="isLoadingdataProject$ | async"
             style="height: 40px"
             [items]="dataProject$ | async"
-            placeholder="Vui lòng chọn"
+            placeholder="
+            Please choose..."
             [clearable]="true"
             formControlName="nameProject"
             (change)="handleChangeProject($event)"
@@ -43,33 +44,32 @@
         <ng-container
           *ngIf="frm['nameProject'].invalid && frm['nameProject'].touched"
         >
-          <small class="sb-color-red">Trường bắt buộc nhập</small>
+          <small class="sb-color-red"> Required...</small>
         </ng-container>
       </div>
 
       <div class="col-md-12">
         <div>
-          <label for="inputEmail4" class="form-label">Trạng thái</label>
+          <label for="inputEmail4" class="form-label">Status</label>
           <ng-select
             style="height: 40px"
             [items]="dataStatus$ | async"
-            placeholder="Vui lòng chọn"
+            placeholder="
+            Please choose..."
             [clearable]="true"
             formControlName="status"
             class="sb-select-combo-info border-0 w-100"
           >
           </ng-select>
         </div>
-        <ng-container
-          *ngIf="frm['status'].invalid && frm['status'].touched"
-        >
-          <small class="sb-color-red">Trường bắt buộc nhập</small>
+        <ng-container *ngIf="frm['status'].invalid && frm['status'].touched">
+          <small class="sb-color-red"> Required...</small>
         </ng-container>
       </div>
 
       <div class="col-md-6">
         <div>
-          <label for="inputPassword4" class="form-label">Ngày bắt đầu</label>
+          <label for="inputPassword4" class="form-label">Start Day</label>
           <br />
           <mat-form-field class="example-full-width" appearance="fill">
             <input
@@ -86,12 +86,12 @@
         <ng-container
           *ngIf="frm['startDate'].invalid && frm['startDate'].touched"
         >
-          <small class="sb-color-red">Trường bắt buộc nhập</small>
+          <small class="sb-color-red">Required...</small>
         </ng-container>
       </div>
       <div class="col-md-6">
         <div>
-          <label for="inputPassword4" class="form-label">Ngày kết thúc</label>
+          <label for="inputPassword4" class="form-label">End Day</label>
           <br />
           <mat-form-field class="example-full-width" appearance="fill">
             <input
@@ -106,17 +106,18 @@
           </mat-form-field>
         </div>
         <ng-container *ngIf="frm['endDate'].invalid && frm['endDate'].touched">
-          <small class="sb-color-red">Trường bắt buộc nhập</small>
+          <small class="sb-color-red">Required...</small>
         </ng-container>
       </div>
       <div class="col-md-6">
         <div>
-          <label for="inputEmail4" class="form-label">Người giao task</label>
+          <label for="inputEmail4" class="form-label">Task Giver</label>
           <ng-select
             [loading]="isLoadingdataUser$ | async"
             style="height: 40px"
             [items]="dataUser$ | async"
-            placeholder="Vui lòng chọn"
+            placeholder="
+            Please choose..."
             [clearable]="true"
             formControlName="toName"
             class="sb-select-combo-info border-0 w-100"
@@ -124,17 +125,18 @@
           </ng-select>
         </div>
         <ng-container *ngIf="frm['toName'].invalid && frm['toName'].touched">
-          <small class="sb-color-red">Trường bắt buộc nhập</small>
+          <small class="sb-color-red">Required...</small>
         </ng-container>
       </div>
       <div class="col-md-6">
         <div>
-          <label for="inputEmail4" class="form-label">Người nhận task</label>
+          <label for="inputEmail4" class="form-label">Task Recipient</label>
           <ng-select
             [loading]="isLoadingdataUser$ | async"
             style="height: 40px"
             [items]="dataUser$ | async"
-            placeholder="Vui lòng chọn"
+            placeholder="
+            Please choose..."
             [clearable]="true"
             formControlName="fromName"
             class="sb-select-combo-info border-0 w-100"
@@ -144,7 +146,7 @@
         <ng-container
           *ngIf="frm['fromName'].invalid && frm['fromName'].touched"
         >
-          <small class="sb-color-red">Trường bắt buộc nhập</small>
+          <small class="sb-color-red">Required...</small>
         </ng-container>
       </div>
     </form>

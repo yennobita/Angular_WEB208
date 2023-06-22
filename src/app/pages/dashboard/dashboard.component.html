@@ -1,47 +1,200 @@
-<div class="content">
-  <h1>Trang chủ</h1>
-  <div class="row">
-    <div class="col-lg-3 col-md-6">
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">Dự án</h5>
-          <p class="card-text" *ngIf="totalProject$; else loading">
-            {{ totalProject$ }}
-          </p>
-          <ng-template #loading>Đang tải</ng-template>
-        </div>
+<div
+  class="container"
+  style="
+    margin-top: 150px;
+    background: #b8b2b26e;
+    border: 1px solid #5d5d5929;
+    border-radius: 5px;
+  "
+>
+  <div class="row bg-drark">
+    <div class="col-3">
+      <h3 class="text-content text-uppercase">Leader</h3>
+      <div class="img-avatar text-center">
+        <img
+          src="https://thespiritofsaigon.net/wp-content/uploads/2022/10/avatar-vo-danh-11.jpg"
+          alt=""
+          style="width: 100px"
+        />
+      </div>
+      <span style="padding: 20px 0px 50px 100px"> Team Summary</span>
+
+      <div
+        class="list-content"
+        style="
+          background: #fff;
+          padding: 10px;
+          border-radius: 5px;
+          margin-top: 10px;
+        "
+      >
+        <p
+          style="
+            border-bottom: 1px solid darkgrey;
+            padding: 10px;
+            font-weight: 600;
+          "
+        >
+          Total Project
+          <span
+            *ngIf="totalProject$; else loading"
+            style="
+              margin-left: 140px;
+              background: darkgray;
+              border-radius: 10px;
+              padding: 0px 10px;
+              color: aliceblue;
+            "
+            >{{ totalProject$ }}
+          </span>
+        </p>
+        <ng-template #loading
+          ><div class="newtons-cradle" style="margin: -43px 0px 0px 200px">
+            <div class="newtons-cradle__dot"></div>
+            <div class="newtons-cradle__dot"></div>
+            <div class="newtons-cradle__dot"></div>
+            <div class="newtons-cradle__dot"></div></div
+        ></ng-template>
+
+        <p
+          style="
+            border-bottom: 1px solid darkgrey;
+            padding: 10px;
+            font-weight: 600;
+          "
+        >
+          Number Of Employees
+          <span
+            *ngIf="totalUser$; else loading1"
+            style="
+              margin-left: 60px;
+              background: darkgray;
+              border-radius: 10px;
+              padding: 0px 10px;
+              color: aliceblue;
+            "
+            >{{ totalUser$ }}</span
+          >
+        </p>
+        <ng-template #loading1
+          ><div class="newtons-cradle" style="margin: -43px 0px 0px 200px">
+            <div class="newtons-cradle__dot"></div>
+            <div class="newtons-cradle__dot"></div>
+            <div class="newtons-cradle__dot"></div>
+            <div class="newtons-cradle__dot"></div></div
+        ></ng-template>
+        <p
+          style="
+            border-bottom: 1px solid darkgrey;
+            padding: 10px;
+            font-weight: 600;
+          "
+        >
+          Total Tasks
+          <span
+            *ngIf="totalTask$; else loading2"
+            style="
+              margin-left: 148px;
+              background: darkgray;
+              border-radius: 10px;
+              padding: 0px 10px;
+              color: aliceblue;
+            "
+          >
+            {{ totalTask$ }}</span
+          >
+        </p>
+        <ng-template #loading2
+          ><div class="newtons-cradle" style="margin: -43px 0px 0px 200px">
+            <div class="newtons-cradle__dot"></div>
+            <div class="newtons-cradle__dot"></div>
+            <div class="newtons-cradle__dot"></div>
+            <div class="newtons-cradle__dot"></div></div
+        ></ng-template>
+        <p
+          style="
+            border-bottom: 1px solid darkgrey;
+            padding: 10px;
+            font-weight: 600;
+          "
+        >
+          Project Revenue<span
+            *ngIf="total$; else loading3"
+            style="
+              margin-left: 40px;
+              background: darkgray;
+              border-radius: 10px;
+              padding: 0px 10px;
+              color: aliceblue;
+            "
+          >
+            {{ total$ }}</span
+          >
+        </p>
+        <ng-template #loading3
+          ><div class="newtons-cradle" style="margin: -43px 0px 0px 200px">
+            <div class="newtons-cradle__dot"></div>
+            <div class="newtons-cradle__dot"></div>
+            <div class="newtons-cradle__dot"></div>
+            <div class="newtons-cradle__dot"></div></div
+        ></ng-template>
+      </div>
+      <div class="list-client">
+        <h3 class="text-content text-uppercase">Client</h3>
+        <p
+          style="
+            border-bottom: 1px solid darkgrey;
+            padding: 10px;
+            background: #fff;
+            border-radius: 5px;
+            margin-top: 10px;
+            font-weight: 600;
+          "
+        >
+          FPT Software Company
+        </p>
       </div>
     </div>
-    <div class="col-lg-3 col-md-6">
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">Nhân viên</h5>
-          <p class="card-text" *ngIf="totalUser$; else loading1">
-            {{ totalUser$ }}
-          </p>
-          <ng-template #loading1>Đang tải</ng-template>
-        </div>
+    <div class="col-6" style="background: white; font-weight: 600">
+      <div class="list-project-top">
+        <h3 class="text-content text-uppercase" style="background: blueviolet">
+          Project Overview
+        </h3>
+        <p style="padding: 10px 30px">
+          Project Cost <span style="padding-left: 242px">$22,225.00</span>
+        </p>
+        <p style="padding: 10px 30px">
+          Currently Spent <span style="padding-left: 215px">$17,321.00</span>
+        </p>
+        <p style="padding: 10px 30px">
+          Remaining <span style="padding-left: 250px">$4,904.00</span>
+        </p>
       </div>
+      <div class="list-project-bottom"></div>
     </div>
-    <div class="col-lg-3 col-md-6">
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">Task</h5>
-          <p class="card-text" *ngIf="totalTask$; else loading2">
-            {{ totalTask$ }}
+    <div class="col-3">
+      <div class="list-staff">
+        <h3 class="text-content text-uppercase" style="background: cadetblue">
+          List Staff
+        </h3>
+
+        <div class="list-staff-sm" *ngFor="let user of users.slice(0, 5)">
+          <p
+            style="
+              background: aliceblue;
+              padding: 10px 0px 10px 20px;
+              border-radius: 10px;
+              color: gray;
+              font-size: 18px;
+              font-weight: 600;
+              margin-top: 10px;
+            "
+          >
+            #{{ users.indexOf(user) + 1 }}
           </p>
-          <ng-template #loading2>Đang tải</ng-template>
-        </div>
-      </div>
-    </div>
-    <div class="col-lg-3 col-md-6">
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">Doanh thu</h5>
-          <p class="card-text" *ngIf="total$; else loading3">
-            {{ total$ }}
-          </p>
-          <ng-template #loading3>Đang tải</ng-template>
+          <span style="padding-left: 20px; font-style: oblique"
+            >{{ user.lastname }} {{ user.firstName }}</span
+          >
         </div>
       </div>
     </div>

@@ -5,6 +5,7 @@ import * as moment from 'moment';
 import { BehaviorSubject } from 'rxjs';
 import { finalize } from 'rxjs/operators';
 import { PageService } from '../../services/pages.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-popup-component',
@@ -23,7 +24,8 @@ export class PopupComponentComponent implements OnInit {
   constructor(
     public activeModal: NgbActiveModal,
     private fb: FormBuilder,
-    private pageService: PageService
+    private pageService: PageService,
+    private toastr: ToastrService
   ) {
     this.formProjectManager = this.fb.group({
       nameProject: [null, Validators.required],
@@ -67,7 +69,7 @@ export class PopupComponentComponent implements OnInit {
         .postProject(body)
         .pipe(finalize(() => this.isLoadingSubmit$.next(false)))
         .subscribe((res) => {
-          alert('Thêm thành công');
+          this.toastr.success('Add new Succsessful!');
           this.activeModal.close(true);
         });
     } else {
@@ -75,7 +77,7 @@ export class PopupComponentComponent implements OnInit {
         .putProject(body, this.content.id)
         .pipe(finalize(() => this.isLoadingSubmit$.next(false)))
         .subscribe((res) => {
-          alert('Sửa thành công');
+          this.toastr.success('Edit Succsessful!');
           this.activeModal.close(true);
         });
     }

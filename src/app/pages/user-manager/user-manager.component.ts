@@ -5,6 +5,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { BehaviorSubject } from 'rxjs';
 import { finalize } from 'rxjs/operators';
 import { PageService } from '../services/pages.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-user-manager',
@@ -24,7 +25,8 @@ export class UserManagerComponent implements OnInit {
   constructor(
     private pageService: PageService,
     private ngModal: NgbModal,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {

@@ -14,6 +14,8 @@ export class DashboardComponent implements OnInit {
   totalProject$: any;
   totalUser$: any;
   total$: any;
+  users: any[] = [];
+
   constructor(private pageService: PageService) {}
 
   ngOnInit(): void {
@@ -44,6 +46,12 @@ export class DashboardComponent implements OnInit {
       .pipe(finalize(() => this.isLoading$.next(false)))
       .subscribe((res) => {
         this.totalUser$ = res.length;
+      });
+    this.pageService
+      .getUser()
+      .pipe(finalize(() => this.isLoading$.next(false)))
+      .subscribe((res) => {
+        this.users = res;
       });
   }
 }

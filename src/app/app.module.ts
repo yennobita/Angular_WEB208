@@ -10,8 +10,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
-import {MatSelectModule} from '@angular/material/select';
+import { MatSelectModule } from '@angular/material/select';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { authInterceptorProviders } from './_helpers/auth.inerceptor';
 
 @NgModule({
   declarations: [AppComponent],
@@ -28,9 +29,11 @@ import { NgSelectModule } from '@ng-select/ng-select';
     MatDatepickerModule,
     MatNativeDateModule,
     MatSelectModule,
-    NgSelectModule
+    NgSelectModule,
+    ReactiveFormsModule,
+    ToastrModule.forRoot(),
   ],
-  providers: [],
+  providers: [authInterceptorProviders],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

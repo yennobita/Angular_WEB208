@@ -11,11 +11,7 @@ const routes: Routes = [
     path: '',
     component: PagesComponent,
     children: [
-      {
-        path: '',
-        redirectTo: 'dashboard',
-        pathMatch: 'full',
-      },
+      { path: '', pathMatch: 'full' },
       {
         path: 'dashboard',
         component: DashboardComponent,
@@ -32,7 +28,6 @@ const routes: Routes = [
         path: 'manager-task',
         component: TaskManagerComponent,
       },
-      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       { path: '**', redirectTo: 'dashboard', pathMatch: 'full' },
     ],
   },

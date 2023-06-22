@@ -7,7 +7,7 @@ export const menu = [
   {
     path: '/dashboard',
     name: 'Trang chủ',
-    role: 'user',
+    role: 'employee',
   },
   {
     path: '/manager-project',
@@ -27,6 +27,6 @@ export const menu = [
   {
     path: '/manager-task',
     name: 'Quản lý task',
-    role: 'user',
+    role: 'employee',
   },
 ];
